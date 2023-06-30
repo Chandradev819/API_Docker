@@ -4,14 +4,11 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - echo login code need to write
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 639080980474.dkr.ecr.eu-west-2.amazonaws.com
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t apidocker .
-      - echo Pushing Docker image to ECR...
-      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
-      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
+     
       
   post_build:
     commands:
