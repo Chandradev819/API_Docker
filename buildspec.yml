@@ -4,12 +4,11 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region eu-west-2)
-      - echo Login succeeded.
+      - aws ecr-public get-login-password --region eu-west-2 | docker login --username AWS --password-stdin public.ecr.aws
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t apidocker .
+      - docker build -t awscodepipelinedemo .
       - echo Pushing Docker image to ECR...
       - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
       - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
