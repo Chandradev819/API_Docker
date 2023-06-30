@@ -8,8 +8,10 @@ phases:
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t awscodepipelinedemo .
+      - docker build -t apidocker .
       - echo Pushing Docker image to ECR...
+      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
+      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
       
   post_build:
     commands:
