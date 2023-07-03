@@ -4,18 +4,20 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      #  - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 639080980474.dkr.ecr.eu-west-2.amazonaws.com
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 639080980474.dkr.ecr.eu-west-2.amazonaws.com
       - echo Starting Docker daemon...
-      #  - sudo systemctl start docker  # Start the Docker daemon
+      - sudo systemctl start docker
+      - echo Docker version
+      - docker version
   build:
     commands:
-      - echo Building Docker image....
-      - docker --version
-      # - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
+      - echo Building Docker image...
+      - docker build -t apidocker .
+      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
   post_build:
     commands:
       - echo Build completed successfully.
-     #  - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
+      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
 
 artifacts:
   files:
