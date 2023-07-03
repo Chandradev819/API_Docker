@@ -9,12 +9,15 @@ phases:
     commands:
       - echo Building Docker image....
       - docker build -t apidocker .
-      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
+      - echo Building Docker image completed....
+      - docker tag apidocker:dev 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:dev 
+      - echo taging of Docker image completed....
   post_build:
     commands:
       # Additional commands for post-build steps (e.g., tests, artifacts, etc.)
       - echo Build completed successfully.
-      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
+      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:dev
+      - echo docker push completed successfully.
 
 artifacts:
   files:
