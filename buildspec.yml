@@ -4,7 +4,8 @@ phases:
   pre_build:
     commands:
       - echo Starting Docker service...
-      - sudo service docker start
+      - |
+        sudo service docker start || sudo start docker || sudo status docker || true
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 639080980474.dkr.ecr.eu-west-2.amazonaws.com
   build:
