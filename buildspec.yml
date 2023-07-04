@@ -13,6 +13,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - service docker status
       - docker build -t apidocker:latest .
       - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
   post_build:
