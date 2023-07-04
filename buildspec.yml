@@ -13,16 +13,16 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t apidocker:latest .
+      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
       - echo Writing image definitions file...
       - printf '[{"name":"hello-world","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
-  files: imagedefinitions.json
+    files:
+    - '**/*'
