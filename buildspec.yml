@@ -11,11 +11,11 @@ phases:
     commands:
       - echo Building Docker image...
       - docker build -t apidocker .
-      - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
+     # - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
   post_build:
     commands:
-      - echo Pushing Docker image to Amazon ECR...
-      - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
+    #  - echo Pushing Docker image to Amazon ECR...
+     # - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
 
 artifacts:
   files:
