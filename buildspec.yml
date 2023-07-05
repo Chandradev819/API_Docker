@@ -7,14 +7,14 @@ phases:
       - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 639080980474.dkr.ecr.eu-west-2.amazonaws.com
   build:
     commands:
-      - echo Docker Service Starting...
+      - echo Docker Service Starting.....
       - service docker start
       - echo Building Docker image...
       - docker build -t apidocker .
       - docker tag apidocker:latest 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest 
   post_build:
     commands:
-      - echo Pushing Docker image to Amazon ECR...
+      - echo Pushing Docker image to Amazon ECR.....
       - docker push 639080980474.dkr.ecr.eu-west-2.amazonaws.com/apidocker:latest
 
 artifacts:
